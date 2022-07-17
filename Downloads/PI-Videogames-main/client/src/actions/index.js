@@ -15,7 +15,7 @@ export const API = "API";
 //ADD_GAME
 export function addGame(body) {
        return async function (dispatch) {
-        axios.post(`http://localhost:3001/videogames`, body)
+        axios.post(`/videogames`, body)
             .then(res => {
                 dispatch({type: ADD_GAME, payload: res.data})
             })
@@ -25,7 +25,7 @@ export function addGame(body) {
 //GET_GAMES
 export function games() {
     return async function (dispatch) {
-        await axios.get(`http://localhost:3001/videogames`)
+        await axios.get(`/videogames`)
             .then(games => {
                 dispatch({ type: GET_GAMES, payload: games.data })
             })
@@ -35,7 +35,7 @@ export function games() {
 //SEARCH_GAMES
 export function search(name) {
     return async function (dispatch) {
-   if (name) {await axios.get(`http://localhost:3001/videogames?name=${name}`)
+   if (name) {await axios.get(`/videogames?name=${name}`)
             .then(games => {
                 dispatch({ type: SEARCH_GAMES, payload: games.data })
             })}
@@ -46,7 +46,7 @@ export function search(name) {
 export function getDeail(id) {
     return async function (dispatch) {
         try {
-            const a = await axios.get(`http://localhost:3001/videogame/${id}`)
+            const a = await axios.get(`/videogame/${id}`)
             dispatch({ type: GET_GAME_DETAIL, payload: a.data })
         }
         catch (e) {
@@ -66,7 +66,7 @@ export function clear() {
 export const getGender = () => {
     return async (dispatch) => {
         try {
-            const a = await axios.get(`http://localhost:3001/gender`)
+            const a = await axios.get(`/gender`)
             dispatch({ type: GET_GENDER, payload: a.data })
         }
 
