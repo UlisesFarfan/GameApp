@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { api, clear, db, filtroGender, getDeail, ordAZ, res } from "../../actions";
+import { api, clear, db, filtroGender, games, getDeail, getGender, ordAZ, res } from "../../actions";
 import cargando from "../../img/cargando.gif"
 import "./home_css.css"
 import Juego from "./Juego.jsx";
@@ -19,7 +19,9 @@ function mapDispatchToProps(dispatch) {
         db: () => dispatch(db()),
         api: () => dispatch(api()),
         getDeail: (id) => dispatch(getDeail(id)),
-        clear: () => dispatch(clear())
+        clear: () => dispatch(clear()),
+        getGender: () => dispatch(getGender()),
+        games: () => dispatch(games())
     };
 }
 
@@ -30,6 +32,11 @@ function Home(props) {
     const [pag, setPag] = useState([])
     const [currentPage, setCurrentpage] = useState(0)
     const limit = 15
+
+    useEffect(() => {
+        props.getGender()
+        props.games()
+    },[])
 
     useEffect(() => {
         setGeneros(props.generos)
