@@ -1,0 +1,59 @@
+.contein{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url(../../img/fondo6.jpg);
+    background-size: cover;
+    color: white;
+    background-attachment: fixed;
+}
+.conteinDetail{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #000000d8;
+    width: 95%;
+    height: 50%;
+    margin-bottom: 30%;
+    margin-top: 5rem;
+    border-radius: 2%;
+}
+.nombre{
+    display: inline-block;
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+.description{
+    width: 80%;
+    margin-bottom: 6rem;
+}
+.conteinDos{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.info{
+    width: 20%;
+    margin-bottom: 2rem;
+}
+
+.imgDetail{
+    width: 22rem;
+    height: 15rem;
+    border-radius: 2%;
+    margin-bottom: 2rem;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+@media screen and (max-width: 700px) {
+    .conteinDos{
+        display: inline;
+    }
+    .info{
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+}

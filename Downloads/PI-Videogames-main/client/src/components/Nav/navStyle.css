@@ -1,0 +1,32 @@
+#nav{
+    display: flex;
+    position: absolute;
+    background-color: #000000d8;
+    justify-content: space-between;
+    width: 80%;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    left: 9%;
+}
+.crear{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.crear:hover{
+    color: #0420d8;
+}
+
+._home{
+    color: rgb(255, 255, 255);
+    margin-left: 5%;
+    text-decoration: none;
+}
+._home:hover{
+    color: #0420d8;
+}
+
+@media screen and (max-width: 700px) {
+    #nav{
+        left: 6%;
+    }
+}

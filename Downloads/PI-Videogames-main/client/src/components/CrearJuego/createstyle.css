@@ -1,0 +1,139 @@
+.conteinCreate {
+    display: flex;
+    justify-content: center;
+    background-image: url(../../img/fondo6.jpg);
+    background-size: cover;
+    color: white;
+    background-attachment: fixed;
+}
+
+.cuadro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000d8;
+    width: 95%;
+    height: 50%;
+    margin-bottom: 30%;
+    margin-top: 5rem;
+    border-radius: 2%;
+}
+
+.formCreate {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+    width: 90%;
+
+}
+
+h1 {
+    margin-top: 2rem;
+}
+
+.inputName {
+    margin-bottom: 2rem;
+    width: 80%;
+}
+
+.inputDescription {
+    margin-bottom: 2rem;
+    width: 80%;
+}
+
+.inputRating {
+    margin-bottom: 2rem;
+    width: 80%;
+}
+
+.inputData {
+    margin-bottom: 2rem;
+    width: 80%;
+}
+
+.plataformSelect {
+    background-color: rgba(255, 0, 0, 0.434);
+    border-radius: .2rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 10rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.plataformas {
+    margin: 1%;
+    padding: 3px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.492);
+    height: 2rem;
+    color: rgb(255, 255, 255);
+    border-radius: .2rem;
+}
+
+.deletePlataforma {
+    height: 1.3rem;
+}
+
+.generosSelect {
+    background-color: rgba(255, 0, 0, 0.434);
+    border-radius: .2rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 10rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.generosCreate {
+    margin: 1%;
+    padding: 3px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.492);
+    height: 2rem;
+    color: rgb(255, 255, 255);
+    border-radius: .2rem;
+
+}
+.deleteGender {
+    height: 1.3rem;
+}
+
+.buttons {
+    margin: .5rem;
+}
+.error{
+    color: red;
+}
+.buttonPost{
+    width: 10%;
+    height: 3rem;
+    margin-bottom: 5rem;
+}
+
+
+@media screen and (max-width: 750px) {
+    .plataformSelect {
+        background-color: rgba(255, 0, 0, 0.434);
+        border-radius: .2rem;
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        height: 20rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .generosSelect {
+        background-color: rgba(255, 0, 0, 0.434);
+        border-radius: .2rem;
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        height: 20rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}

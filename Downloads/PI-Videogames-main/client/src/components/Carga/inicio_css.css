@@ -1,0 +1,26 @@
+.conteiner {
+    display: flex;
+    position: absolute;
+    background-image: url(../../img/fondo6.jpg);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    justify-content: center;
+}
+.centrado{
+    position: absolute;
+    top: 40%;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: #000000a8;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+.home{
+    text-decoration: none;
+    color: #ffffff;
+}
+.centrado:hover{
+    background-color: #000000;
+}

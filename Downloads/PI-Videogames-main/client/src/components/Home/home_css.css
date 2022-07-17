@@ -1,0 +1,74 @@
+#primero{
+    display: inline;
+align-items: center;
+justify-content: center;
+background-color: #049cd8;
+}
+.conteinHome{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+background-image: url(../../img/fondo6.jpg);
+background-size: cover;
+padding-top: 5rem;
+background-attachment: fixed;
+}
+
+.Contein{
+    display: inline-block;
+    width: 20rem;
+    margin: 1rem;
+    background-color: #00000095;
+    border-radius: 2%;
+    color: rgb(255, 255, 255);
+}
+
+.Contein:hover{
+background-color: #000000;
+color: rgb(255, 255, 255);
+}
+.gameName{
+    margin-left: 5%;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.gameName:hover{
+    color:#0420d8;
+}
+.generos{
+    margin-left: 5%;
+
+}
+
+.img{
+    border-radius: 2%;
+    margin-top: 0.5rem;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+.perrito{
+height: 35rem;
+margin-bottom: 10rem;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 20rem;
+}
+.nav{
+    display:flex;
+    justify-content: space-between;
+}
+.filtros{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+@media screen and (max-width: 700px) {
+    .perrito{
+        width: 100%;
+    }
+}
