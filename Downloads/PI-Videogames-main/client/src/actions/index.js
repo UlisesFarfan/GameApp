@@ -10,6 +10,7 @@ export const ORD_AZ = "ORD_AZ";
 export const ORD_GENDER = "ORD_GENDER";
 export const DB = "DB";
 export const API = "API";
+export const VERIFICAR = "VERIFICAR";
 
 
 //ADD_GAME
@@ -105,5 +106,11 @@ export function db(){
 export function api(){
     return {
         type: API
+    }
+}
+//VERIFICAR
+export function ver(){
+    return {
+        type: VERIFICAR
     }
 }
