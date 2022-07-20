@@ -1,51 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { api, clear, db, filtroGender, games, getDeail, getGender, ordAZ, res } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { api, db, filtroGender, games, getGender, ordAZ, res } from "../../actions";
 import cargando from "../../img/cargando.gif"
 import "./home_css.css"
 import Juego from "./Juego.jsx";
 
-function mapStateToProps(state) {
-    return {
-        gamesLoaded: state.gamesLoaded,
-        generos: state.generos,
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        res: () => dispatch(res()),
-        filtroGender: (genero) => dispatch(filtroGender(genero)),
-        ordAZ: (ord) => dispatch(ordAZ(ord)),
-        db: () => dispatch(db()),
-        api: () => dispatch(api()),
-        getGender: () => dispatch(getGender()),
-        games: () => dispatch(games())
-    };
-}
+export default function Home(){
 
-function Home(props) {
-    
+    let gamesState = useSelector(state => state.gamesLoaded)
+    let gender = useSelector(state => state.generos)
+
+    const dispatch = useDispatch()
+
     const [generos, setGeneros] = useState([])
     const [info, setInfo] = useState([]);
     const [pag, setPag] = useState([])
     const [currentPage, setCurrentpage] = useState(0)
     const limit = 15
 
+    
     useEffect(() => {
-        props.getGender()
-        props.games()
-    },[])
-
+        setGeneros(gender)
+    }, [gender])
     useEffect(() => {
-        setGeneros(props.generos)
-    }, [props.generos])
-    useEffect(() => {
-        setInfo(props.gamesLoaded)
-    }, [props.gamesLoaded])
+        setInfo(gamesState)
+    }, [gamesState])
     useEffect(() => {
         setPag([...info].splice(0, limit))
     }, [info])
-
+    
     const next = () => {
         const totalJuegos = info.length
         const nextPage = currentPage + 1
@@ -61,38 +44,43 @@ function Home(props) {
         setPag([...info].splice(firstIndex, limit))
         setCurrentpage(prevPag)
     }
-
-    function filGen(e){
-        props.res()
-        if(e === "Generos") return props.res()
-        props.filtroGender(e)
+    
+    function filGen(e) {
+        dispatch(res())
+        if (e === "Generos") return dispatch(res())
+        dispatch(filtroGender(e.target.value))
     }
-    function filTipo(e){
-        props.res()
-        if(e === "todo") return props.res()
-        if(e === "baseDeDatos") return props.db()
-        if(e === "Api") return props.api()
+    function filTipo(e) {
+        dispatch(res())
+        if (e.target.value === "todo") return dispatch(res())
+        if (e.target.value === "baseDeDatos") return dispatch(db())
+        if (e.target.value === "Api") return dispatch(api())
     }
-    function AZ(e){
-        props.ordAZ(e.target.value)
+    function AZ(e) {
+        dispatch(ordAZ(e.target.value))
         setCurrentpage(0)
         setPag([...info].splice(0, limit))
     }
-
-
+    
+    useEffect(() => {
+            getGender()(dispatch)
+            games()(dispatch)
+        }
+        , [dispatch])
+    
     return (
         <div id="primero">
             <div className="conteinHome">
                 <div className="filtros">
-                    <select onChange={(e)=> filGen(e.target.value)}>
+                    <select onChange={(e) => filGen(e)}>
                         <option value="Generos"> Genders </option>
                         {
                             generos && generos.map(el => {
-                               return <option key={el.id} value={el.name}>{el.name}</option>
+                                return <option key={el.id} value={el.name}>{el.name}</option>
                             })
                         }
                     </select>
-                    <select onChange={(e) => filTipo(e.target.value)}>
+                    <select onChange={(e) => filTipo(e)}>
                         <option value="todo"> Type </option>
                         <option value="baseDeDatos"> Database </option>
                         <option value="Api"> API </option>
@@ -104,7 +92,7 @@ function Home(props) {
                 </div>
                 <br />
                 {
-                    pag.length > 0 ? pag.map(juego => (<Juego key={juego.id} {...juego}/>)) : (
+                    pag.length > 0 ? pag.map(juego => (<Juego key={juego.id} {...juego} />)) : (
                         <img src={`${cargando}`} className="perrito" alt="img cargando" />
                     )
                 }
@@ -121,5 +109,3 @@ function Home(props) {
         </div>
     )
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
