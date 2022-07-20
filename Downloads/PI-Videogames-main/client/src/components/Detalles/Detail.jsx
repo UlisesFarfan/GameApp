@@ -1,28 +1,21 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./detalleStyle.css"
 import logo from "../../img/logo.jpg";
 import { clear, getDetail } from "../../actions";
 import { useEffect } from "react"
- 
-function mapStateToProps(state) {
-    return {
-        gamesDetail: state.gameDetail
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        getDetail: id => dispatch(getDetail(id)),
-        clear: () => dispatch(clear())
-    };
-}
 
-function Detail(props) {
-    const { name, description, generos, rating, plataformas, img, data_added, id } = props.gamesDetail
-    
-        useEffect(()=>{
-            props.clear()
-            props.getDetail(props.match.params.id)}, [])
-            
+export default function Detail(props) {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(clear())
+            dispatch(getDetail(props.match.params.id))
+    }, [dispatch])
+
+    const detail = useSelector(state => state.gameDetail)
+
+    const { name, description, generos, rating, plataformas, img, data_added } = detail
+
+
     return (
         <>
             {
@@ -31,7 +24,7 @@ function Detail(props) {
                         <div className="nombre" >
                             {name}
                         </div>
-                        <img src={`${img || logo}`} className="imgDetail" alt="img"/>
+                        <img src={`${img || logo}`} className="imgDetail" alt="img" />
                         <div className="conteinDos">
                             <div className="info">
                                 Rating: <br /><br /> {rating}
@@ -53,5 +46,3 @@ function Detail(props) {
         </>
     )
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Detail)
