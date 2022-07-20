@@ -1,19 +1,7 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addGame } from "../../actions";
 import "./createstyle.css"
-
-function mapStateToProps(state) {
-    return {
-        plataformas: state.plataformas,
-        generos: state.generos
-    }
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        addGame: (body) => dispatch(addGame(body))
-    };
-}
 
 const initialState = {
     name: "",
@@ -27,7 +15,11 @@ const initialState = {
 const regExName = new RegExp("^[a-zA-Z ]+$");
 const regExDescription = new RegExp("^[a-zA-Z0-9 ]+$");
 
-const Create = function (props) {
+export default function Create () {
+
+    const dispatch = useDispatch()
+    const plataformas = useSelector(state => state.plataformas )
+    const generos = useSelector(state => state.generos )
 
     const [form, setForm] = useState(initialState)
     const [btn, setBtn] = useState(true)
@@ -82,7 +74,7 @@ const Create = function (props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (errorName === '' && errorDescrition === "" && errorRating === "" && form.name !== '' && form.description !== '' && form.plataformas.length > 0) {
-            props.addGame(form)
+            dispatch(addGame(form))
             setForm(initialState)
             setSelectGender([])
             setBtn(true)
@@ -187,7 +179,7 @@ const Create = function (props) {
                             Plataforms: 
                             <br />
                             {
-                                props.plataformas.map(el => {
+                                plataformas.map(el => {
                                     return <button className="buttons" key={el} value={el} onClick={(e) => handleButtonPlataform(e)} > {el} </button>
                                 })
                             }
@@ -195,8 +187,8 @@ const Create = function (props) {
                             {
                                 form.plataformas && form.plataformas.map(el => {
                                     return <div className="plataformas" key={el}>
-                                    <div key={el} >{el}</div>
-                                    <button className="deletePlataforma" value={el} key={el} onClick={(e) => handlePlataformDelete(e)} > X </button>
+                                    <div >{el}</div>
+                                    <button className="deletePlataforma" value={el} onClick={(e) => handlePlataformDelete(e)} > X </button>
                                     </div>
                                 })
                             }
@@ -206,19 +198,18 @@ const Create = function (props) {
                             Genders: 
                             <br />
                             {
-                                props.generos.map(el => {
+                                generos.map(el => {
                                     return <button key={el.id} className="buttons" value={el.id} name={el.name} onClick={(e) => handleButtonGender(e)} > {el.name} </button>
                                 })
                             }
                         <div className="generosSelect">
                             {
                                 selectGender && selectGender.map(el => {
-                                    return <>
-                                        <div className="generosCreate" key={el.id}>
-                                        <div key={el.name} >{el.name}</div>
-                                        <button className="deleteGender" key={el.id} value={el.id} name={el.name} onClick={(e) => handleGenderDelete(e)} > X </button>
+                                    return <div className="generosCreate" key={el.id}>
+                                        <div >{el.name}</div>
+                                        <button className="deleteGender" value={el.id} name={el.name} onClick={(e) => handleGenderDelete(e)} > X </button>
                                         </div>
-                                    </>
+                                
                                 })
                             }
                         </div>
@@ -229,4 +220,3 @@ const Create = function (props) {
         </div>
     )
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Create)
