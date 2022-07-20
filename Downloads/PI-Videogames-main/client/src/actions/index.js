@@ -43,7 +43,7 @@ export function search(name) {
 }
 
 //GET_GAME_DETAIL
-export function getDeail(id) {
+export function getDetail(id) {
     return async function (dispatch) {
         try {
             const a = await axios.get(`/videogame/${id}`)
