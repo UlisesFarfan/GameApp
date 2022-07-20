@@ -10,10 +10,10 @@ import Create from './components/CrearJuego/Create'
 function App() {
   return (
     <React.Fragment >
-      <Route path={["/home" , "/create", "/detail"]} component={ Nav } />
+      <Route path={["/home" , "/create", "/detail/:id"]} component={ Nav } />
       <Route exact path="/" component={ Inicio } />
       <Route exact path="/home" component={ Home } />
-      <Route exact path="/detail" component={ Detail } />
+      <Route exact path="/detail/:id" component={ Detail } />
       <Route exact path="/create" component={ Create } />
     </React.Fragment>
   );
