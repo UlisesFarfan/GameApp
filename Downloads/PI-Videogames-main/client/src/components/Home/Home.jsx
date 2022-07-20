@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { api, db, filtroGender, games, getGender, ordAZ, res } from "../../actions";
+import { api, db, filtroGender, games, getGender, ordAZ, res, ver } from "../../actions";
 import cargando from "../../img/cargando.gif"
 import "./home_css.css"
 import Juego from "./Juego.jsx";
 
-export default function Home(){
+export default function Home() {
 
     let gamesState = useSelector(state => state.gamesLoaded)
     let gender = useSelector(state => state.generos)
-
+    let verificar = useSelector(state => state.verificar)
     const dispatch = useDispatch()
 
     const [generos, setGeneros] = useState([])
@@ -18,7 +18,7 @@ export default function Home(){
     const [currentPage, setCurrentpage] = useState(0)
     const limit = 15
 
-    
+
     useEffect(() => {
         setGeneros(gender)
     }, [gender])
@@ -28,7 +28,7 @@ export default function Home(){
     useEffect(() => {
         setPag([...info].splice(0, limit))
     }, [info])
-    
+
     const next = () => {
         const totalJuegos = info.length
         const nextPage = currentPage + 1
@@ -44,7 +44,7 @@ export default function Home(){
         setPag([...info].splice(firstIndex, limit))
         setCurrentpage(prevPag)
     }
-    
+
     function filGen(e) {
         dispatch(res())
         if (e === "Generos") return dispatch(res())
@@ -61,13 +61,12 @@ export default function Home(){
         setCurrentpage(0)
         setPag([...info].splice(0, limit))
     }
-    
-    useEffect(() => {
-            getGender()(dispatch)
-            games()(dispatch)
-        }
-        , [dispatch])
-    
+    if (verificar) {
+        getGender()(dispatch)
+        games()(dispatch)
+        dispatch(ver())
+    }  
+
     return (
         <div id="primero">
             <div className="conteinHome">
