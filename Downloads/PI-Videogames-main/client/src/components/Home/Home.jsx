@@ -18,8 +18,6 @@ function mapDispatchToProps(dispatch) {
         ordAZ: (ord) => dispatch(ordAZ(ord)),
         db: () => dispatch(db()),
         api: () => dispatch(api()),
-        getDeail: (id) => dispatch(getDeail(id)),
-        clear: () => dispatch(clear()),
         getGender: () => dispatch(getGender()),
         games: () => dispatch(games())
     };
@@ -106,7 +104,7 @@ function Home(props) {
                 </div>
                 <br />
                 {
-                    pag.length > 0 ? pag.map(juego => (<Juego key={juego.id} {...juego} buscar={props.getDeail} clear={props.clear} />)) : (
+                    pag.length > 0 ? pag.map(juego => (<Juego key={juego.id} {...juego}/>)) : (
                         <img src={`${cargando}`} className="perrito" alt="img cargando" />
                     )
                 }
