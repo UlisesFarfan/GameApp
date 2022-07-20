@@ -1,4 +1,4 @@
-import { ADD_GAME, API, CLEAR_DETAIL, DB, GET_GAMES, GET_GAME_DETAIL, GET_GENDER, ORD_AZ, ORD_GENDER, RESTAURAR, SEARCH_GAMES } from "../actions";
+import { ADD_GAME, API, CLEAR_DETAIL, DB, GET_GAMES, GET_GAME_DETAIL, GET_GENDER, ORD_AZ, ORD_GENDER, RESTAURAR, SEARCH_GAMES, VERIFICAR } from "../actions";
 
 function ordAZ(array, tipo) {
     for (let i = 1; i < array.length; i++) {
@@ -34,6 +34,7 @@ function filtroGenero(genero, obj) {
 
 
 const initialState = {
+    verificar: [],
     gamesLoaded: [],
     juegosMios: [],
     juegosAPI: [],
@@ -55,7 +56,6 @@ const initialState = {
 		"PlayStation 3",
 		"PlayStation 2",
 	],
-    alert: {}
 };
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -115,6 +115,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 gamesLoaded: state.juegosAPI
+            }
+        case VERIFICAR:
+            return {
+                ...state,
+                verificar: false
             }
         default:{
             return state
