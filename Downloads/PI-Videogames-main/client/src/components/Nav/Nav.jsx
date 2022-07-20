@@ -1,30 +1,20 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { search, res, games } from "../../actions";
+import { search, games } from "../../actions";
 import "./navStyle.css"
 
-function mapStateToProps(state) {
-    return {
-        gamesLoaded: state.gamesLoaded
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        search: (name) => dispatch(search(name)),
-        games: () => dispatch(games())
-    };
-}
 
-function Home(props) {
+export default function Home() {
+    const dispatch = useDispatch()
 
     const [state, setState] = useState("")
     const handleChange = (event) => {
         setState(event.target.value);
     }
     const handleSubmit = (event) => {
-        event.preventDefault();
-        props.search(state);
+        event.preventDefault()
+        dispatch(search(state))
     }
     return (
         <div id="nav">
@@ -32,7 +22,7 @@ function Home(props) {
                 <NavLink to="/create" className="crear">
                     Create
                 </NavLink>
-                <NavLink to="/home" onClick={() => props.games()} className="_home">
+                <NavLink to="/home" onClick={() => dispatch(games())} className="_home">
                     Home
                 </NavLink>
             </div>
@@ -54,5 +44,3 @@ function Home(props) {
         </div>
     )
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
