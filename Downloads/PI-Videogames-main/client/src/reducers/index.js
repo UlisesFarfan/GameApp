@@ -34,7 +34,7 @@ function filtroGenero(genero, obj) {
 
 
 const initialState = {
-    verificar: [],
+    verificar: true,
     gamesLoaded: [],
     juegosMios: [],
     juegosAPI: [],
