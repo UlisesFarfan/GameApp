@@ -1,16 +1,28 @@
 import { connect } from "react-redux";
 import "./detalleStyle.css"
 import logo from "../../img/logo.jpg";
-
+import { clear, getDetail } from "../../actions";
+import { useEffect } from "react"
+ 
 function mapStateToProps(state) {
     return {
         gamesDetail: state.gameDetail
     };
 }
+function mapDispatchToProps(dispatch) {
+    return {
+        getDetail: id => dispatch(getDetail(id)),
+        clear: () => dispatch(clear())
+    };
+}
 
 function Detail(props) {
-
-    const { name, description, generos, rating, plataformas, img, data_added } = props.gamesDetail
+    const { name, description, generos, rating, plataformas, img, data_added, id } = props.gamesDetail
+    
+        useEffect(()=>{
+            props.clear()
+            props.getDetail(props.match.params.id)}, [])
+            
     return (
         <>
             {
@@ -42,4 +54,4 @@ function Detail(props) {
     )
 }
 
-export default connect(mapStateToProps, null)(Detail)
+export default connect(mapStateToProps, mapDispatchToProps)(Detail)
