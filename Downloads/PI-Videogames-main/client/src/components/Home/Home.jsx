@@ -47,7 +47,7 @@ export default function Home() {
 
     function filGen(e) {
         dispatch(res())
-        if (e === "Generos") return dispatch(res())
+        if (e.target.value === "Generos") return dispatch(res())
         dispatch(filtroGender(e.target.value))
     }
     function filTipo(e) {
