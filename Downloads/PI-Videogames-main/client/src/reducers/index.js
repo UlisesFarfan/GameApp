@@ -17,6 +17,20 @@ function ordAZ(array, tipo) {
                     array[j - 1] = temp
                 }
             }
+            if (tipo === "mayor") {
+                if (array[j].rating > array[j - 1].rating) {
+                    let temp = array[j]
+                    array[j] = array[j - 1]
+                    array[j - 1] = temp
+                }
+            }
+            if (tipo === "menor") {
+                if (array[j].rating < array[j - 1].rating) {
+                    let temp = array[j]
+                    array[j] = array[j - 1]
+                    array[j - 1] = temp
+                }
+            }
         }
     }
     return array
@@ -41,21 +55,21 @@ const initialState = {
     gameDetail: {},
     generos: [],
     plataformas: [
-		"PC",
-		"PlayStation 5",
-		"Xbox One",
-		"PlayStation 4",
-		"Xbox Series S/X",
-		"Nintendo Switch",
-		"iOS",
-		"Android",
-		"macOS",
-		"Linux",
-		"Xbox 360",
-		"Xbox",
-		"PlayStation 3",
-		"PlayStation 2",
-	],
+        "PC",
+        "PlayStation 5",
+        "Xbox One",
+        "PlayStation 4",
+        "Xbox Series S/X",
+        "Nintendo Switch",
+        "iOS",
+        "Android",
+        "macOS",
+        "Linux",
+        "Xbox 360",
+        "Xbox",
+        "PlayStation 3",
+        "PlayStation 2",
+    ]
 };
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -121,7 +135,7 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 verificar: false
             }
-        default:{
+        default: {
             return state
         }
     }
