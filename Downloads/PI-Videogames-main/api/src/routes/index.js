@@ -31,7 +31,7 @@ const Buscar = async (name) => {
     game.map(el => {
         let generos = []
         el.genders.map(el => generos.push(el.name))
-        if (resultad.length < 15) { resultad.push({ name: el.name, generos: generos, id: el.id }) } })
+        if (resultad.length < 15) { resultad.push({ name: el.name, generos: generos, id: el.id, rating: el.rating }) } })
 
     const resultado = await fetch(`https://api.rawg.io/api/games?search=${name}&key=${YOUR_API_KEY}`)
         .then(res => res.json())
@@ -42,7 +42,7 @@ const Buscar = async (name) => {
                     let generos = []
                     el.genres.map(el => generos.push(el.name))
                     resultad.push(
-                        { name: el.name, img: el.background_image, generos: generos, id: el.id })
+                        { name: el.name, img: el.background_image, generos: generos, id: el.id, rating: el.rating })
                 }
             })
         })
