@@ -88,6 +88,10 @@ export default function Home() {
                         <option value="A-Z"> A-Z </option>
                         <option value="Z-A"> Z-A </option>
                     </select>
+                    <select onChange={(e) => AZ(e)}>
+                        <option value="mayor"> Elderly </option>
+                        <option value="menor"> Minor </option>
+                    </select>
                 </div>
                 <br />
                 {
