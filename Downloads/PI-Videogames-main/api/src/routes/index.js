@@ -55,7 +55,7 @@ const juegos = async () => {
     game.map(el => { 
         let generos = []
         el.genders.map(el => generos.push(el.name))
-        juegosMios.push({ name: el.name, generos: generos, id: el.id }) })
+        juegosMios.push({ name: el.name, generos: generos, id: el.id, rating: el.rating}) })
     const promesa1 = await fetch(`https://api.rawg.io/api/games?key=${YOUR_API_KEY}`)
         .then(res => res.json())
         .then(res => res.results)
@@ -63,7 +63,7 @@ const juegos = async () => {
             res.map(el => { 
                 let generos = []
                 el.genres.map(el => generos.push(el.name))
-                juegosApi.push({ name: el.name, img: el.background_image, generos: generos, id: el.id }) })
+                juegosApi.push({ name: el.name, img: el.background_image, generos: generos, id: el.id, rating: el.rating }) })
         })
     const promesa2 = await fetch(`https://api.rawg.io/api/games?page=2&key=${YOUR_API_KEY}`)
         .then(res => res.json())
@@ -72,7 +72,7 @@ const juegos = async () => {
             res.map(el => {
                 let generos = []
                 el.genres.map(el => generos.push(el.name))
-                juegosApi.push({ name: el.name, img: el.background_image, generos: generos, id: el.id}) })
+                juegosApi.push({ name: el.name, img: el.background_image, generos: generos, id: el.id, rating: el.rating }) })
         })
 
     return [juegosMios, juegosApi]
